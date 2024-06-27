@@ -1,0 +1,38 @@
+<div class="bg-cover">
+    <div class="flex flex-col items-center bg-sky-950 h-96">
+        <div class="">
+            <h1 class="text-4xl font-bold pt-3">Welcome To The</h1>
+            <h1 class="text-4xl font-bold text-center">Inventory App</h1>
+        </div>
+        <div class="p-5">
+            <img src="Assets/img/logo.png" alt="" class="">
+        </div>
+        <div class="p-2">
+            <h3 class="text-xl font-bold">Choose an option to get started</h3>
+        </div>
+    </div>
+    <div class="flex flex-col items-center absolute w-full top-[350px] ">
+        <div class="flex flex-col justify-center items-center bg-neutral-50 h-96 w-4/5 rounded-xl">
+            <div class="w-4/5">
+                <button class="signup-view bg-sky-950 h-14 w-full rounded-xl text-xl font-bold" type="button">Sign
+                    Up</button>
+            </div>
+            <div class="p-4">
+                <span class="text-black">OR</span>
+            </div>
+            <div class="w-4/5">
+                <button class="login-view bg-sky-950 h-14 w-full rounded-xl text-xl font-bold" type="button">Sign
+                    In</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.login-view').addEventListener('click',function(){
+        loadPartialView('login',document.querySelector('.app'), false);
+    })
+    document.querySelector('.signup-view').addEventListener('click',function(){
+        loadPartialView('signup',document.querySelector('.app'), false);
+    })
+</script>

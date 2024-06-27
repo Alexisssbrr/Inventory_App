@@ -1,0 +1,45 @@
+<div class="bg-cover">
+    <div class="bg-sky-950 h-96">
+        <div class="p-6 back">
+            <img class="w-8" src="Assets/img/Arrow.svg" alt="">
+        </div>
+        <div class="flex flex-col items-center">
+            <div class="">
+                <img src="Assets/img/logo.png" alt="" class="">
+            </div>
+            <div class="pt-5">
+                <h3 class="text-xl font-bold">Welcome Back, Sign In to Start</h3>
+            </div>
+        </div>
+        <div class="flex flex-col items-center absolute w-full top-[350px] ">
+            <div class="flex flex-col justify-center items-center bg-neutral-50 h-96 w-4/5 rounded-xl">
+                <div class="w-4/5 pt-2">
+                    <input class="w-full h-14 rounded-xl text-xl font-bold bg-neutral-50 shadow-md shadow-gray-300 pl-2 outline-none text-black" type="email" placeholder="Email">
+                </div>
+                <div class="w-4/5 pt-2 pb-2">
+                    <input class="w-full h-14 rounded-xl text-xl font-bold bg-neutral-50 shadow-md shadow-gray-300 pl-2 outline-none text-black" type="password" placeholder="Password">
+                </div>
+                <div class="w-4/5">
+                    <button class="login-view bg-sky-950 h-14 w-full rounded-xl text-xl font-bold" type="button">Sign In</button>
+                </div>
+                <div class="p-2">
+                    <span class="text-black">OR</span>
+                </div>
+                <div class="w-4/5">
+                    <button class="signup-view bg-sky-950 h-14 w-full rounded-xl text-xl font-bold" type="button">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelector('.signup-view').addEventListener('click',function(){
+        loadPartialView('signup',document.querySelector('.app'), false);
+    })
+    document.querySelector('.back').addEventListener('click',function(){
+        loadPartialView('start',document.querySelector('.app'), false);
+    })
+    document.querySelector('.login-view').addEventListener('click',function(){
+        loadPartialView('homepage',document.querySelector('.app'), false);
+    })
+</script>
