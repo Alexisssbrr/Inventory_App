@@ -13,3 +13,8 @@ body {
     font-family: 'Poppins',sans-serif;
     background-color: #E0E1DD;
 }
+
+.hr{
+    height: 2px;
+    color: black;
+}

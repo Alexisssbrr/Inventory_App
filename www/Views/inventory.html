@@ -4,33 +4,93 @@
         <h2 class="font-bold text-black text-3xl ">Full Inventory</h2>
     </div>
 </div>
+
+<!-- SEARCH BAR -->
 <div class="pt-4 flex justify-center">
     <input type="text" placeholder="SEARCH"
         class="rounded-md bg-gray-100 pl-3 w-[90%] h-[40px] font-bold text-black outline-none shadow-md">
 </div>
-<div class="ps-[5%] scanner">
-    <div>
-        <div class="flex flex-col justify-content-start pt-3">
-            <p class="text-black font-bold">Scan</p>
-            <span class="text-black">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="size-10">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z" />
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z" />
-                </svg>
-            </span>
+<div class="grid grid-cols-2">
+    <div class="ps-[10%]">
+        <div>
+            <div class="flex flex-col justify-content-start pt-3">
+                <p class="text-black font-bold">Scan</p>
+                <span class="text-black">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-10 scanner">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="pe-[10%] flex flex-col items-end justify-center">
+        <div>
+            <div class="flex flex-col justify-content-end pt-3">
+                <p class="text-black font-bold">Add</p>
+                <span class="text-black">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-10 add-form" id="openModalBtn1">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                </span>
+            </div>
         </div>
     </div>
 </div>
 
+<!-- MODAL FORMULARIO -->
+<div id="modal1" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-11/12 max-w-md md:w-1/2 lg:w-1/3">
+        <h2 class="text-2xl font-bold mb-6 text-gray-900">Add a New Item</h2>
+        <form class="max-w-sm mx-auto">
+            <div class="mb-5">
+                <label for="item-name" class="block mb-2 text-sm font-medium text-gray-900">Item Name</label>
+                <input type="text" id="item-name"
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Chairs" required />
+            </div>
+            <div class="mb-5">
+                <label for="quantity" class="block mb-2 text-sm font-medium text-gray-900">Quantity</label>
+                <input type="number" id="quantity"
+                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Quantity" required />
+            </div>
+            <div class="mb-5">
+                <label for="location" class="block mb-2 text-sm font-medium text-gray-900">Location</label>
+                <select id="location"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option>Aula 01</option>
+                    <option>Aula 02</option>
+                    <option>Aula 03</option>
+                    <option>Lab 01</option>
+                    <option>Lab 02</option>
+                    <option>Lab 03</option>
+                </select>
+            </div>
+            <div class="mb-5">
+                <label for="user_avatar" class="block mb-2 text-sm font-medium text-gray-900">Upload file</label>
+                <input
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                    id="user_avatar" type="file" />
+            </div>
+            <button type="submit"
+                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add</button>
+        </form>
+        <button id="closeModalBtn1"
+            class="mt-4 w-full bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300">Close</button>
+    </div>
+</div>
+
 <!-- CARTAS -->
-<!-- Contenedor principal con padding inferior para evitar que el contenido se oculte detrás del navbar -->
 <div class="flex flex-col gap-2 pb-20">
     <!-- Cartas del overview -->
     <div class="pt-4 w-full justify-center m-auto flex">
-        <div class="p-2 w-[90%] bg-neutral-50 rounded-lg flex gap-5">
+        <div class="p-2 w-[90%] bg-neutral-50 rounded-lg flex gap-5" id="openModalBtn2">
             <div class="">
                 <img src="Assets/img/mouse.jpg" alt="" class=" rounded-lg w-32 h-auto">
             </div>
@@ -57,6 +117,27 @@
         </div>
     </div>
     <!-- Repite las cartas según sea necesario -->
+</div>
+
+<!-- MODAL CARTAS -->
+<div id="modal2" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-11/12 max-w-md md:w-1/2 lg:w-1/3">
+        <h2 class="text-2xl font-bold mb-6 text-gray-900">{Item Name}</h2>
+        <div class="grid grid-cols-2">
+            <div class="w-[100%]">
+                <img src="/www/Assets/img/mouse.jpg" alt="">
+            </div>
+            <div class="text-black w-[100%]">
+                <img src="/www/Assets/img/qrtest.jpg" class="p-3" alt="">
+            </div>
+        </div>
+        <div class="text-black">
+            <p>Quantity: 12pcs</p>
+            <p>Location: Lab 01</p>
+        </div>
+        <button id="closeModalBtn2"
+            class="mt-4 w-full bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300">Close</button>
+    </div>
 </div>
 
 <!-- Navbar fijo en la parte inferior -->
@@ -119,4 +200,28 @@
     document.querySelector('.profile-view').addEventListener('click', function () {
         loadPartialView('profile', document.querySelector('.app'), false);
     })
+
+    const openModalBtn = document.getElementById('openModalBtn1');
+    const closeModalBtn = document.getElementById('closeModalBtn1');
+    const modal = document.getElementById('modal1');
+
+    openModalBtn.addEventListener('click', () => {
+        modal1.classList.remove('hidden');
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+        modal1.classList.add('hidden');
+    });
+
+    const openModalBtn2 = document.getElementById('openModalBtn2');
+    const closeModalBtn2 = document.getElementById('closeModalBtn2');
+    const modal2 = document.getElementById('modal2');
+
+    openModalBtn2.addEventListener('click', () => {
+      modal2.classList.remove('hidden');
+    });
+
+    closeModalBtn2.addEventListener('click', () => {
+      modal2.classList.add('hidden');
+    });
 </script>
