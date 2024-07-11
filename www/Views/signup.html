@@ -43,7 +43,9 @@
         </div>
     </div>
 </div>
+
 <script>
+
     const signUp = document.getElementById('submitSignUp');
     signUp.addEventListener('click', (event) => {
         event.preventDefault();
@@ -53,31 +55,19 @@
         const email = document.getElementById('rEmail').value;
         const password = document.getElementById('rPassword').value;
 
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        const create = createUserWithEmailAndPassword();
+
+        create(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log('Account Created with UID:', user.uid); // Confirmación de creación de cuenta
-        
-                return db.collection('users').doc(user.uid).set({
-                    fullName: fullName,
+                const userData = {
+                    name: name,
                     email: email
-                });
-            })
-            .catch((error) => {
-                if (error && error.code) {
-                    const errorCode = error.code;
-                    console.error('Error creating account:', errorCode); // Error en creación de cuenta
-
-                    if (errorCode === 'auth/email-already-in-use') {
-                        console.log('Email address already in use');
-                    } else {
-                        console.log('Unable to create this account');
-                    }
-                } else {
-                    console.error('Unexpected error occurred:', error); // Manejo de errores inesperados
                 }
             });
-    });
+    })
+
 
     document.querySelector('.login-view').addEventListener('click', function () {
         loadPartialView('login', document.querySelector('.app'), false);

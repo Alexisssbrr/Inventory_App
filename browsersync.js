@@ -1,8 +1,6 @@
-const browserSync = require('browser-sync').create();
+import browserSyncPkg from 'browser-sync';
+const browserSync = browserSyncPkg.create();
 
 browserSync.init({
-  server: {
-    baseDir: './www'
-  },
-  files: ['./www//*']
+  server: './www/'
 });
