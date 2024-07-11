@@ -19,7 +19,7 @@
                 <div class="w-4/5 pt-2 pb-2">
                     <input class="w-full h-14 rounded-xl text-xl font-bold bg-neutral-50 shadow-md shadow-gray-300 pl-2 outline-none text-black" type="password" placeholder="Password">
                 </div>
-                <div class="w-4/5">
+                <div class="w-4/5" id="submitSignIn">
                     <button class="login-view bg-sky-950 h-14 w-full rounded-xl text-xl font-bold" type="button">Sign In</button>
                 </div>
                 <div class="p-2">
@@ -38,8 +38,5 @@
     })
     document.querySelector('.back').addEventListener('click',function(){
         loadPartialView('start',document.querySelector('.app'), false);
-    })
-    document.querySelector('.login-view').addEventListener('click',function(){
-        loadPartialView('homepage',document.querySelector('.app'), false);
     })
 </script>
