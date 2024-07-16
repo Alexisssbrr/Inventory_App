@@ -14,7 +14,7 @@
 <div class="flex flex-col gap-2">
     <!-- PRIMERA CARTA DEL OVERVIEW -->
     <div class="pt-4 w-full justify-center m-auto flex">
-        <div class="p-2 w-[90%] bg-neutral-50 rounded-lg flex gap-5">
+        <div class="p-2 w-[90%] bg-neutral-50 rounded-lg flex gap-5" id="openModalBtn3">
             <div class="">
                 <img src="Assets/img/mouse.jpg" alt="" class=" rounded-lg w-32 h-auto">
             </div>
@@ -41,7 +41,26 @@
         </div>
     </div>
 </div>
-
+<!-- MODAL DE CARTAS -->
+<div id="modal3" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-11/12 max-w-md md:w-1/2 lg:w-1/3">
+        <h2 class="text-2xl font-bold mb-6 text-gray-900">{Item Name}</h2>
+        <div class="grid grid-cols-2">
+            <div class="w-[100%]">
+                <img src="/www/Assets/img/mouse.jpg" alt="">
+            </div>
+            <div class="text-black w-[100%]">
+                <img src="/www/Assets/img/qrtest.jpg" class="p-3" alt="">
+            </div>
+        </div>
+        <div class="text-black">
+            <p>Quantity: 12pcs</p>
+            <p>Location: Lab 01</p>
+        </div>
+        <button id="closeModalBtn3"
+            class="mt-4 w-full bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300">Close</button>
+    </div>
+</div>
 <!--NAVBAR INFERIOR-->
 <div class="h-20 fixed bottom-0 border-t-2 w-full bg-sky-950">
     <div class="grid grid-cols-4 gap-4 w-full h-full">
@@ -85,7 +104,6 @@
         </div>
     </div>
 </div>
-=
 
 <script>
     document.querySelector('.homepage-view').addEventListener('click', function () {
@@ -100,4 +118,16 @@
     document.querySelector('.profile-view').addEventListener('click', function () {
         loadPartialView('profile', document.querySelector('.app'), false);
     })
+
+    var openModalBtn = document.getElementById('openModalBtn3');
+    var closeModalBtn = document.getElementById('closeModalBtn3');
+    var modal = document.getElementById('modal3');
+
+    openModalBtn.addEventListener('click', () => {
+        modal3.classList.remove('hidden');
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+        modal3.classList.add('hidden');
+    });
 </script>

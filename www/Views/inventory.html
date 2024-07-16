@@ -201,9 +201,9 @@
         loadPartialView('profile', document.querySelector('.app'), false);
     })
 
-    const openModalBtn = document.getElementById('openModalBtn1');
-    const closeModalBtn = document.getElementById('closeModalBtn1');
-    const modal = document.getElementById('modal1');
+    var openModalBtn = document.getElementById('openModalBtn1');
+    var closeModalBtn = document.getElementById('closeModalBtn1');
+    var modal = document.getElementById('modal1');
 
     openModalBtn.addEventListener('click', () => {
         modal1.classList.remove('hidden');
@@ -213,9 +213,9 @@
         modal1.classList.add('hidden');
     });
 
-    const openModalBtn2 = document.getElementById('openModalBtn2');
-    const closeModalBtn2 = document.getElementById('closeModalBtn2');
-    const modal2 = document.getElementById('modal2');
+    var openModalBtn2 = document.getElementById('openModalBtn2');
+    var closeModalBtn2 = document.getElementById('closeModalBtn2');
+    var modal2 = document.getElementById('modal2');
 
     openModalBtn2.addEventListener('click', () => {
       modal2.classList.remove('hidden');

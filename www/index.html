@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
@@ -10,16 +11,23 @@
     <link rel="stylesheet" href="/www/Assets/css/tailstyles.css">
     <link rel="stylesheet" href="/www/Assets/css/styles.css">
     <title>Inventory Application</title>
-    <script src="/www/Assets/js/jquery/dist/jquery.min.js"></script>
-    <script src="/www/Assets/js/index.js"></script>
-    <script src="/www/Assets/js/firebase.js"></script>
 </head>
+
 <body>
     <div class="app">
-
     </div>
+    <script src="/www/Assets/js/jquery/dist/jquery.min.js"></script>
+    <script src="/www/Assets/js/index.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script>
+    <script src="/www/Assets/js/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+    <script>
+        loadPartialView('homepage', document.querySelector('.app'))
+    </script>
 </body>
-<script>
-    loadPartialView('inventory', document.querySelector('.app'))
-</script>
+
 </html>

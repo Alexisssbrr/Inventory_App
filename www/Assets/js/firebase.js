@@ -1,21 +1,14 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyC0xaBUE6y_2kSm2_R90KTKH2ioZoqKUwU",
-    authDomain: "inventoryapp-pi.firebaseapp.com",
-    projectId: "inventoryapp-pi",
-    storageBucket: "inventoryapp-pi.appspot.com",
-    messagingSenderId: "924322340580",
-    appId: "1:924322340580:web:06d87754a2f84abc27d6f1",
-    measurementId: "G-5QESTMHTMN"
+    apiKey: "AIzaSyANzJnopTxqUHVW2BBmT5xethl5oi6UV8I",
+    authDomain: "inventory-app-aafd7.firebaseapp.com",
+    projectId: "inventory-app-aafd7",
+    storageBucket: "inventory-app-aafd7.appspot.com",
+    messagingSenderId: "480387863608",
+    appId: "1:480387863608:web:29ea2735daa93e475902cd"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+const db = firebaseApp.firestore();
+const auth = firebase.auth();
+const storage = firebase.storage();
