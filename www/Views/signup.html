@@ -13,16 +13,22 @@
         </div>
         <div class="flex flex-col items-center absolute w-full top-[350px] ">
             <div class="flex flex-col justify-center items-center bg-neutral-50 h-[425px] w-4/5 rounded-xl">
-                <form id="register-form" class="justify-center items-center flex flex-col gap-5 m-0 w-4/5 pt-2" onsubmit="registerUser(event)">
-                    <input class="mt-[1%] w-4/5 h-14 rounded-xl text-xl font-bold bg-neutral-50 shadow-md shadow-gray-300 pl-2 outline-none text-black"
+                <form id="register-form" class="justify-center items-center flex flex-col gap-5 m-0 w-4/5 pt-2"
+                    onsubmit="registerUser(event)">
+                    <input
+                        class="mt-[1%] w-4/5 h-14 rounded-xl text-xl font-bold bg-neutral-50 shadow-md shadow-gray-300 pl-2 outline-none text-black"
                         type="text" id="full-name" placeholder="Name">
-                    <input class="mt-[-1%] w-4/5 h-14 rounded-xl text-xl font-bold bg-neutral-50 shadow-md shadow-gray-300 pl-2 outline-none text-black"
+                    <input
+                        class="mt-[-1%] w-4/5 h-14 rounded-xl text-xl font-bold bg-neutral-50 shadow-md shadow-gray-300 pl-2 outline-none text-black"
                         type="email" id="email" placeholder="Email">
-                    <input class="mt-[-1%] w-4/5 h-14 rounded-xl text-xl font-bold bg-neutral-50 shadow-md shadow-gray-300 pl-2 outline-none text-black"
+                    <input
+                        class="mt-[-1%] w-4/5 h-14 rounded-xl text-xl font-bold bg-neutral-50 shadow-md shadow-gray-300 pl-2 outline-none text-black"
                         type="password" id="password" placeholder="Password">
-                    <button class="mt-[-1%] signup-view bg-sky-950 h-14 w-4/5 rounded-xl text-xl font-bold" id="sign-up-button" type="submit">Sign Up</button>
+                    <button class="mt-[-1%] signup-view bg-sky-950 h-14 w-4/5 rounded-xl text-xl font-bold"
+                        id="sign-up-button" type="submit">Sign Up</button>
                     <span class="m-[-1px] text-black">OR</span>
-                    <button class="mt-[-1%] login-view bg-sky-950 h-14 w-4/5 rounded-xl text-xl font-bold" type="button">Sign In</button>
+                    <button class="mt-[-1%] login-view bg-sky-950 h-14 w-4/5 rounded-xl text-xl font-bold"
+                        type="button">Sign In</button>
                 </form>
             </div>
         </div>
@@ -30,7 +36,6 @@
 </div>
 <script>
     function registerUser(event) {
-        console.log("registerUser function called");  // Verifica si la función se llama
         event.preventDefault();
 
         var fullName = document.getElementById('full-name').value;
@@ -44,14 +49,18 @@
         if (!validateEmail(email)) {
             console.log("Invalid email format.");
             Swal.fire({
-                icon: 'error',
-                title: 'Error al registrar usuario',
-                text: 'Por favor, ingrese un correo electrónico válido.',
+                icon: 'warning',
+                title: 'Error...',
+                text: 'Invalid email',
                 customClass: {
-                    popup: 'bg-white border border-red-300 rounded-md shadow-lg w-80',
-                    title: 'font-semibold text-fc2 text-lg',
+                    popup: 'bg-white border border-yellow-300 rounded-md shadow-sm w-64',
+                    title: 'font-semibold text-fc2 text-md',
                     content: 'text-gray-700 text-sm',
-                }
+                },
+                timer: 3000,
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
             });
             return;
         }
@@ -59,31 +68,21 @@
         if (password.length < 6) {
             console.log("Password too short.");
             Swal.fire({
-                icon: 'error',
-                title: 'Error al registrar usuario',
-                text: 'La contraseña debe tener al menos 6 caracteres.',
+                icon: 'warning',
+                title: 'Error...',
+                text: 'Password must be 6 characters',
                 customClass: {
-                    popup: 'bg-white border border-red-300 rounded-md shadow-lg w-80',
-                    title: 'font-semibold text-fc2 text-lg',
+                    popup: 'bg-white border border-yellow-300 rounded-md shadow-sm w-64',
+                    title: 'font-semibold text-fc2 text-md',
                     content: 'text-gray-700 text-sm',
-                }
+                },
+                timer: 3000,
+                showConfirmButton: false,
+                toast: true,
+                position: 'top-end',
             });
             return;
         }
-
-        Swal.fire({
-            title: 'Cargando..',
-            allowOutsideClick: false,
-            showConfirmButton: false,
-            didOpen: () => {
-                Swal.showLoading();
-                const swalElm = Swal.getPopup();
-                swalElm.classList.add('bg-white', 'border', 'border-blue-500', 'rounded-md', 'shadow-lg', 'w-80');
-                const spinner = swalElm.querySelector('.swal2-loader');
-                spinner.style.borderTopColor = '#6A5ACD';
-                spinner.style.borderRightColor = '#6A5ACD';
-            }
-        });
 
         console.log("Starting Firebase authentication...");
 
@@ -100,16 +99,17 @@
                 console.log("User data saved to Firestore.");
                 Swal.fire({
                     icon: 'success',
-                    title: 'Registro exitoso',
+                    title: 'Registration completed',
                     timer: 2000,
                     showConfirmButton: false,
                     customClass: {
-                        popup: 'bg-white border border-green-300 rounded-md shadow-lg w-80',
-                        title: 'font-semibold text-fc2 text-lg',
+                        popup: 'bg-white border border-green-300 rounded-md shadow-sm w-64',
+                        title: 'font-semibold text-fc2 text-md',
                         content: 'text-gray-700 text-sm',
-                    }
+                    },
+                    toast: true,
+                    position: 'top-end',
                 }).then(() => {
-                    console.log("Loading home-inventory partial view...");
                     loadPartialView('homepage', document.querySelector('.app'), false);
                 });
             })
@@ -118,22 +118,26 @@
                 let errorMessage = error.message;
 
                 if (errorMessage.includes('auth/email-already-in-use')) {
-                    errorMessage = 'El correo electrónico ya está en uso.';
+                    errorMessage = 'Email in use.';
                 } else if (errorMessage.includes('auth/weak-password')) {
-                    errorMessage = 'La contraseña debe tener al menos 6 caracteres.';
+                    errorMessage = 'Password must be 6 characters.';
                 } else if (errorMessage.includes('auth/invalid-email')) {
-                    errorMessage = 'Por favor, ingrese un correo electrónico válido.';
+                    errorMessage = 'Unvalid email, please add a valid email.';
                 }
 
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Error al registrar usuario',
+                    icon: 'warning',
+                    title: 'Error...',
                     text: errorMessage,
                     customClass: {
-                        popup: 'bg-white border border-red-300 rounded-md shadow-lg w-80',
-                        title: 'font-semibold text-fc2 text-lg',
+                        popup: 'bg-white border border-yellow-300 rounded-md shadow-sm w-64',
+                        title: 'font-semibold text-fc2 text-md',
                         content: 'text-gray-700 text-sm',
-                    }
+                    },
+                    timer: 3000,
+                    showConfirmButton: false,
+                    toast: true,
+                    position: 'top-end',
                 });
             });
     }

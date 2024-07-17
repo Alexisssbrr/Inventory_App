@@ -51,14 +51,22 @@
                 console.log('Login successful:', user);
                 Swal.fire({
                     icon: 'success',
-                    title: '¡Listo!',
-                    text: 'Has iniciado sesión.',
-                    timer: 2000,
+                    title: '¡Ready!',
+                    text: 'You are logging in.',
+                    timer: 3000,
                     showConfirmButton: false,
+                    position: 'top-end',
+                    toast: true,
                     customClass: {
-                        popup: 'bg-white border border-gray-200 rounded-md shadow-lg w-80',
-                        title: 'font-semibold text-fc2 text-lg',
+                        popup: 'bg-white border border-yellow-300 rounded-md shadow-sm w-64',
+                        title: 'font-semibold text-fc2 text-md',
                         content: 'text-gray-700 text-sm',
+                    },
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
                     }
                 }).then(() => {
                     loadPartialView('homepage', document.querySelector('.app'), false);
@@ -68,25 +76,36 @@
                 console.error('Login error:', error);
                 let errorMessage = error.message;
                 if (errorMessage.includes('auth/user-not-found')) {
-                    errorMessage = 'Usuario no encontrado. Por favor, verifica tu correo electrónico.';
+                    errorMessage = 'User not found, verify your email.';
                 } else if (errorMessage.includes('auth/wrong-password')) {
-                    errorMessage = 'Contraseña incorrecta. Por favor, inténtalo de nuevo.';
+                    errorMessage = 'Incorrect password, try again.';
                 } else if (errorMessage.includes('auth/too-many-requests')) {
-                    errorMessage = 'Demasiados intentos de inicio de sesión fallidos. Por favor, inténtalo más tarde.';
+                    errorMessage = 'Too many tries, try later.';
                 } else if (errorMessage.includes('auth/invalid-email')) {
-                    errorMessage = 'Correo electrónico inválido. Por favor, verifica tu correo electrónico.';
+                    errorMessage = 'Invalid email.';
                 }
                 Swal.fire({
                     icon: 'error',
-                    title: 'Error al iniciar sesión',
+                    title: 'Error...',
                     text: errorMessage,
+                    timer: 3000,
+                    showConfirmButton: false,
+                    position: 'top-end',
+                    toast: true,
                     customClass: {
-                        popup: 'bg-white border border-red-300 rounded-md shadow-lg w-80',
-                        title: 'font-semibold text-fc2 text-lg',
+                        popup: 'bg-white border border-yellow-300 rounded-md shadow-sm w-64',
+                        title: 'font-semibold text-fc2 text-md',
                         content: 'text-gray-700 text-sm',
+                    },
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
                     }
                 });
             });
+
     });
     document.querySelector('.signup-view').addEventListener('click', function () {
         loadPartialView('signup', document.querySelector('.app'), false);
