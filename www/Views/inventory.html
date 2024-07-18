@@ -234,6 +234,9 @@
             // Consulta para obtener todos los documentos de la colección "products"
             const querySnapshot = await db.collection("products").get();
 
+            // Limpiar el contenedor de productos
+            productsContainer.innerHTML = '';
+
             // Iterar sobre los documentos obtenidos
             querySnapshot.forEach(doc => {
                 // Acceder a los datos de cada producto
@@ -245,61 +248,82 @@
 
                 // Estructura interna de la tarjeta según tu diseño actual
                 productCard.innerHTML = `
-            <div class="p-2 w-[90%] h-[20%] bg-neutral-50 rounded-lg flex gap-5 openModalBtn" data-id="${doc.id}">
-                <div>
-                    <img src="${productData.image}" alt="${productData.itemName}" class="rounded-lg w-32 h-auto">
-                </div>
-                <div class="flex flex-col justify-center gap-2">
-                    <span class="text-black font-semibold text-xl">${productData.itemName}</span>
-                    <span class="text-black font-semibold text-lg">Quantity: ${productData.quantity} pcs</span>
-                </div>
-                <div class="flex flex-col justify-center gap-2">
-                    <span class="w-10 text-black">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-9">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                    </span>
-                    <span class="w-10 text-black">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-9">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                        </svg>
-                    </span>
-                </div>
-            </div>
-            
-            <!-- MODAL -->
-            <div id="modal-${doc.id}" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
-                <div class="bg-white p-8 rounded-lg shadow-lg w-11/12 max-w-md md:w-1/2 lg:w-1/3 relative">
-                    <button class="closeModalBtn absolute top-2 right-2 text-black text-2xl font-bold" data-id="${doc.id}">&times;</button>
-                    <h2 class="text-2xl font-bold mb-6 text-gray-900">${productData.itemName}</h2>
-                    <div class="grid grid-cols-2">
-                        <div class="w-[100%]">
-                            <img src="${productData.image}" alt="">
-                        </div>
-                        <div class="text-black w-[100%]">
-                            <img src="/www/Assets/img/qrtest.jpg" class="p-3" alt="">
-                        </div>
+                <div class="p-2 w-[90%] h-[20%] bg-neutral-50 rounded-lg flex gap-5 openModalBtn" data-id="${doc.id}">
+                    <div class="w-auto h-auto" style="background-image: url('${productData.image}'); background-size: cover; background-position: center;">
+                        <div class="bg-black rounded-lg w-32 h-auto"></div>
                     </div>
-                    <div class="text-black font-bold text-l">
-                        <p>Quantity: ${productData.quantity} pcs</p>
-                        <p>Location: ${productData.location}</p>
+                    <div class="flex flex-col justify-center gap-2">
+                        <span class="text-black font-semibold text-xl">${productData.itemName}</span>
+                        <span class="text-black font-semibold text-lg">Quantity: ${productData.quantity} pcs</span>
+                    </div>
+                    <div class="flex flex-col justify-center gap-2">
+                        <span class="w-10 text-black">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                            </svg>
+                        </span>
+                        <span class="w-10 text-black deleteprod" data-id="${doc.id}">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                            </svg>
+                        </span>
                     </div>
                 </div>
-            </div>
-        `;
+                
+                <!-- MODAL -->
+                <div id="modal-${doc.id}" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+                    <div class="bg-white p-8 rounded-lg shadow-lg w-11/12 max-w-md md:w-1/2 lg:w-1/3 relative">
+                        <button class="closeModalBtn absolute top-2 right-2 text-black text-2xl font-bold" data-id="${doc.id}">&times;</button>
+                        <h2 class="text-2xl font-bold mb-6 text-gray-900">${productData.itemName}</h2>
+                        <div class="grid grid-cols-2">
+                            <div class="w-[100%]">
+                                <img src="${productData.image}" alt="">
+                            </div>
+                            <div class="text-black w-[100%]">
+                                <img src="/www/Assets/img/qrtest.jpg" class="p-3" alt="">
+                            </div>
+                        </div>
+                        <div class="text-black font-bold text-l">
+                            <p>Quantity: ${productData.quantity} pcs</p>
+                            <p>Location: ${productData.location}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
 
                 // Agregar la tarjeta de producto al contenedor principal
                 productsContainer.appendChild(productCard);
             });
 
-            // Añadir eventos a los botones después de que las tarjetas estén en el DOM
-            addModalEvents();
+            // Añadir eventos a los spans después de que las tarjetas estén en el DOM
+            addDeleteEvents();
         } catch (error) {
             console.error("Error al obtener productos:", error);
+        }
+    }
+
+    function addDeleteEvents() {
+        var deleteSpans = document.getElementsByClassName('deleteprod');
+        for (var i = 0; i < deleteSpans.length; i++) {
+            deleteSpans[i].addEventListener('click', async function (event) {
+                event.preventDefault();
+
+                // Suponiendo que el ID del documento está almacenado en un atributo 'data-id'
+                var docId = this.getAttribute('data-id');
+
+                if (docId) {
+                    try {
+                        await db.collection('products').doc(docId).delete();
+                        console.log('Producto eliminado correctamente');
+                        // Remueve el producto del DOM
+                        this.closest('.pt-4').remove();
+                    } catch (error) {
+                        console.error('No se puede eliminar este producto: ', error);
+                    }
+                } else {
+                    console.error('No se pudo encontrar el ID del documento');
+                }
+            });
         }
     }
 
